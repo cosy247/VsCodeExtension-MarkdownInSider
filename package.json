@@ -32,6 +32,44 @@
           "when": "true"
         }
       ]
+    },
+    "commands": [
+      {
+        "command": "markdown-in-sider:select",
+        "title": "切换",
+        "icon": "$(selection)"
+      },
+      {
+        "command": "markdown-in-sider:preview",
+        "title": "预览",
+        "icon": "$(open-preview)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "markdown-in-sider:select",
+          "when": "view == markdown-in-sider:sider",
+          "group": "navigation@0"
+        },
+        {
+          "command": "markdown-in-sider:preview",
+          "when": "view == markdown-in-sider:sider",
+          "group": "navigation@2"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "markdown-in-sider",
+      "properties": {
+        "markdown-in-sider.markdowns": {
+          "type": "array",
+          "default": [
+            {}
+          ],
+          "description": "markdown-in-sider内容列表"
+        }
+      }
     }
   },
   "scripts": {
