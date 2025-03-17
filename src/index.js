@@ -15,21 +15,29 @@ function activate(context) {
   }
 
   // 注册页面
-  vscode.window.registerWebviewViewProvider('markdown-in-sider:sider', {
-    resolveWebviewView(webviewView) {
-      webview = webviewView.webview;
-      webview.options = { enableScripts: true, retainContextWhenHidden: true };
-      webview.html = fs.readFileSync(path.join(context.extensionPath, 'view/index.html')).toString();
-      webview.postMessage({ command: 'markdowns', data: markdowns });
-      webview.onDidReceiveMessage((message) => {
-        if (message.command === 'save') {
-          vscode.workspace.getConfiguration('markdown-in-sider').update('markdowns', message.data, true);
-        } else if (message.command === 'changeTitle') {
-          webviewView.title = message.data;
-        }
-      });
+  vscode.window.registerWebviewViewProvider(
+    'markdown-in-sider:sider',
+    {
+      resolveWebviewView(webviewView) {
+        webview = webviewView.webview;
+        webview.options = { enableScripts: true };
+        webview.html = fs.readFileSync(path.join(context.extensionPath, 'view/index.html')).toString();
+        webview.postMessage({ command: 'markdowns', data: markdowns });
+        webview.onDidReceiveMessage((message) => {
+          if (message.command === 'save') {
+            vscode.workspace.getConfiguration('markdown-in-sider').update('markdowns', message.data, true);
+          } else if (message.command === 'changeTitle') {
+            webviewView.title = message.data;
+          }
+        });
+      },
     },
-  });
+    {
+      webviewOptions: {
+        retainContextWhenHidden: true,
+      },
+    }
+  );
 
   // 注册按钮指令
   context.subscriptions.push(
