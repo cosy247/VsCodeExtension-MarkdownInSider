@@ -1,5 +1,12 @@
 <template>
-  <MdEditor class="editor" :class="{ preview: isPreview }" v-model="markdown" theme="dark" :toolbars="false" :preview="true" />
+  <MdEditor
+    class="editor"
+    :class="{ preview: isPreview }"
+    v-model="markdown"
+    theme="dark"
+    :toolbars="false"
+    :preview="true"
+    @onBlur="handleBlur" />
 </template>
 
 <script setup>
@@ -14,6 +21,11 @@ const markdown = ref('');
 
 // 切换编辑和预览
 const isPreview = ref(false);
+
+// 编辑器失去焦点
+function handleBlur() {
+  vscode.postMessage({ command: 'save', data: markdown.value });
+}
 
 window.addEventListener('message', (event) => {
   const message = event.data;
