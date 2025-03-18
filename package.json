@@ -43,6 +43,11 @@
         "command": "markdown-in-sider:preview",
         "title": "预览",
         "icon": "$(open-preview)"
+      },
+      {
+        "command": "markdown-in-sider:save",
+        "title": "另存为",
+        "icon": "$(symbol-reference)"
       }
     ],
     "menus": {
@@ -53,9 +58,14 @@
           "group": "navigation@0"
         },
         {
-          "command": "markdown-in-sider:preview",
+          "command": "markdown-in-sider:save",
           "when": "view == markdown-in-sider:sider",
           "group": "navigation@2"
+        },
+        {
+          "command": "markdown-in-sider:preview",
+          "when": "view == markdown-in-sider:sider",
+          "group": "navigation@3"
         }
       ]
     },

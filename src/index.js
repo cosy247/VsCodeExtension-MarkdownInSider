@@ -96,6 +96,24 @@ function activate(context) {
     // 预览
     vscode.commands.registerCommand('markdown-in-sider:preview', () => {
       webviewView.webview.postMessage({ command: 'preview' });
+    }),
+    // 另存为
+    vscode.commands.registerCommand('markdown-in-sider:save', async () => {
+      const { name, content } = markdowns[currentMarkdownIndex];
+      const url = await vscode.window.showSaveDialog(
+        (options = {
+          saveLabel: '保存', // 对话框按钮文本
+          filters: [{ name: 'Markdown Files', extensions: ['.md'] }],
+          defaultUri: vscode.Uri.file(`${name}.md`),
+        })
+      );
+      if (!url) return;
+      // 弹出输入框让用户输入文件内容
+      try {
+        await vscode.workspace.fs.writeFile(url, Buffer.from(content, 'utf8'));
+      } catch (error) {
+        vscode.window.showErrorMessage(`Failed to save file: ${error.message}`);
+      }
     })
   );
 }
