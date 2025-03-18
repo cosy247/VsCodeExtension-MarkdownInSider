@@ -1,66 +1,27 @@
 <template>
-  <div class="App">
-    {{ currentMarkdown.content }}
-  </div>
-  <div class="select-box" v-show="isShowSelectBox">
-    <div class="select-item" v-for="(item, index) in markdowns">
-      <input v-if="item.renaming" class="select-item-name" type="text" v-model="item.name" />
-      <p v-else class="select-item-name" @click="selectItem(index)">{{ item.name }}</p>
-      <img class="select-icon" src="./imgs/edit.png" @click="item.renaming = true" />
-      <img class="select-icon" src="./imgs/edit.png" @click="item.renaming = false" />
-      <img class="select-icon" src="./imgs/delete.png" />
-    </div>
-  </div>
+  <MdEditor class="editor" :class="{ preview: isPreview }" v-model="markdown" theme="dark" :toolbars="false" :preview="true" />
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
+import { MdEditor } from 'md-editor-v3';
+import 'md-editor-v3/lib/style.css';
 
 const vscode = acquireVsCodeApi();
 
 // 文档内容列表
-const markdowns = ref([]);
-const currentIndex = ref(0);
-const currentMarkdown = computed(() => markdowns.value[currentIndex.value] || {});
-
-// 是否显示文档选择弹窗
-const isShowSelectBox = ref(false);
+const markdown = ref('');
 
 // 切换编辑和预览
 const isPreview = ref(false);
 
-/**
- * @description: 选择一个文档
- */
-function selectItem(index) {
-  currentIndex.value = index;
-  isShowSelectBox.value = false;
-}
-
-/**
- * @description: 删除目标下标的文档
- */
-function deleteItem(index) {
-  markdowns.value.splice(index, 1);
-  if (!currentMarkdown.value) {
-    currentIndex.value = 0;
-  }
-}
-
 window.addEventListener('message', (event) => {
   const message = event.data;
-  if (message.command === 'markdowns') {
-    markdowns.value = message.data;
-    if (currentMarkdown) {
-      vscode.postMessage({
-        command: 'changeTitle',
-        data: currentMarkdown.value.name,
-      });
-    }
-  } else if (message.command === 'select') {
-    isShowSelectBox.value = true;
+  if (message.command === 'markdown') {
+    markdown.value = message.data;
   } else if (message.command === 'preview') {
     isPreview.value = !isPreview.value;
+    console.log(isPreview.value);
   }
 });
 </script>
