@@ -66,42 +66,37 @@ window.addEventListener('message', (event) => {
 </script>
 
 <style scoped>
-.App {
-  padding: 10px 5px;
-  min-height: 100vh;
-  box-sizing: border-box;
-}
-.select-box {
+.editor {
   position: fixed;
+  height: 100vh;
+  width: 200vw;
   left: 0;
-  bottom: 0;
+  top: 0;
+  overflow: hidden;
+  border: none;
+  background: #0000;
+}
+.editor.preview {
+  left: unset;
+  right: 0;
+}
+.editor:deep(.md-editor-resize-operate) {
+  display: none !important;
+}
+.editor:deep(.cm-scroller) {
+  overflow-y: auto;
+}
+.editor:deep(.cm-content),
+.editor:deep(.cm-editor) {
+  background: transparent;
+}
+.editor:deep(.md-editor-content) {
+  margin-bottom: 25px;
+}
+.editor:deep(.md-editor-footer) {
   width: 100%;
-  display: flex;
-  border-top: 1px solid #8ae;
-}
-.select-item {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-.select-item-name {
-  flex: 1;
-  width: 0;
-  outline: none;
-  border: #9a88 1px solid;
-}
-.select-icon {
-  height: 1em;
-  width: 1em;
-  cursor: pointer;
-}
-</style>
-
-<style scoped>
-button {
-}
-button.readonly {
-  opacity: 0.5;
-  pointer-events: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
 }
 </style>
