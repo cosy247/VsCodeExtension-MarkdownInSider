@@ -16,10 +16,29 @@ import 'md-editor-v3/lib/style.css';
 // const vscode = acquireVsCodeApi();
 
 // 文档内容列表
-const markdown = ref('');
+const markdown = ref(`
+# 87
+
+\`\`\`js
+// 文档内容列表
+const markdown = ref('# 87');
 
 // 切换编辑和预览
 const isPreview = ref(false);
+
+// 编辑器失去焦点
+function handleBlur() {
+  vscode.postMessage({ command: 'save', data: markdown.value });
+}
+\`\`\`
+
+| 1 | 2 | 3| 1 | 2 | 3| 1 | 2 | 3123| 
+| --- | -- | -- |--- | -- | -- |--- | -- | -- |
+| 23 | 3 | 21
+`);
+
+// 切换编辑和预览
+const isPreview = ref(true);
 
 // 编辑器失去焦点
 function handleBlur() {
@@ -76,6 +95,32 @@ window.addEventListener('message', (event) => {
   left: 0;
 }
 #app .md-editor-preview {
-  padding: 0 5px;
+  padding: 0 2px;
+}
+#app .md-editor-code {
+  margin: 1em 0;
+  box-shadow: #8882 0 0 3px;
+}
+#app .md-editor-code-head {
+  display: none;
+}
+#app .md-editor-code pre code {
+  padding: 2px !important;
+}
+#app .md-editor-code span[rn-wrapper] {
+  display: none;
+}
+#app .md-editor-preview h1,
+#app .md-editor-preview h2,
+#app .md-editor-preview h3,
+#app .md-editor-preview h4,
+#app .md-editor-preview h5,
+#app .md-editor-preview h6 {
+  margin: 0.4em 0 0.2em;
+}
+#app .md-editor-preview > table {
+  width: 100%;
+  overflow: auto;
+  table-layout: fixed;
 }
 </style>

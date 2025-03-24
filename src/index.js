@@ -49,8 +49,7 @@ function activate(context) {
       },
     }
   );
-  // type,taskid,caseid,tyid,user,seatid,pid
-  // type为0是数据回放，type为1是最小化窗口，type为2是关闭窗口
+  
   // 注册按钮指令
   context.subscriptions.push(
     // 新建文档
