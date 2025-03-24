@@ -13,8 +13,7 @@
 import { ref } from 'vue';
 import { MdEditor } from 'md-editor-v3';
 import 'md-editor-v3/lib/style.css';
-
-const vscode = acquireVsCodeApi();
+// const vscode = acquireVsCodeApi();
 
 // 文档内容列表
 const markdown = ref('');
@@ -53,23 +52,30 @@ window.addEventListener('message', (event) => {
   left: unset;
   right: 0;
 }
-.editor:deep(.md-editor-resize-operate) {
+</style>
+
+<style>
+#app .md-editor-resize-operate {
   display: none !important;
 }
-.editor:deep(.cm-scroller) {
+#app .cm-scroller {
   overflow-y: auto;
 }
-.editor:deep(.cm-content),
-.editor:deep(.cm-editor) {
+#app .cm-content,
+#app .cm-editor {
   background: transparent;
+  margin: 0px;
 }
-.editor:deep(.md-editor-content) {
+#app .md-editor-content {
   margin-bottom: 25px;
 }
-.editor:deep(.md-editor-footer) {
+#app .md-editor-footer {
   width: 100%;
   position: fixed;
   bottom: 0;
   left: 0;
+}
+#app .md-editor-preview {
+  padding: 0 5px;
 }
 </style>
