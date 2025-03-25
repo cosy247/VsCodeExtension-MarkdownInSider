@@ -49,14 +49,14 @@ function activate(context) {
       },
     }
   );
-  
+
   // 注册按钮指令
   context.subscriptions.push(
     // 新建文档
     vscode.commands.registerCommand('markdown-in-sider:add', async () => {
       const newOption = await vscode.window.showInputBox({
-        placeHolder: '请输入新文档名',
-        prompt: '新文档名',
+        placeHolder: 'Please enter a new document name.',
+        prompt: 'New document name',
       });
       if (newOption) {
         markdowns.push({ name: newOption, id: Date.now(), content: `# ${newOption}` });
@@ -67,7 +67,7 @@ function activate(context) {
     // 导入
     vscode.commands.registerCommand('markdown-in-sider:reference', async () => {
       const uris = await vscode.window.showOpenDialog({
-        saveLabel: '选择文件', // 对话框按钮文本
+        saveLabel: 'Select file', // 对话框按钮文本
         canSelectMany: true,
       });
       if (!uris || uris.length === 0) return;
@@ -82,7 +82,7 @@ function activate(context) {
           setMarkdown(markdowns.length - 1);
           updateConfig();
         } catch (error) {
-          vscode.window.showErrorMessage(`读取文件 ${fileName} 时出错:`, error);
+          vscode.window.showErrorMessage(`Error reading file ${fileName}:`, error);
         }
       }
     }),
@@ -90,7 +90,7 @@ function activate(context) {
     vscode.commands.registerCommand('markdown-in-sider:select', async () => {
       const options = markdowns.map((m) => ({ label: m.name, id: m.id }));
       const selectedOption = await vscode.window.showQuickPick(options, {
-        placeHolder: '选择文档或操作!',
+        placeHolder: 'Select a document.',
       });
       if (selectedOption && markdowns[currentMarkdownIndex].id !== selectedOption.id) {
         const docIndex = markdowns.findIndex((m) => m.id === selectedOption.id);
@@ -101,7 +101,7 @@ function activate(context) {
     vscode.commands.registerCommand('markdown-in-sider:delete', async () => {
       const options = markdowns.map((m) => ({ label: m.name, id: m.id }));
       const deleteDoc = await vscode.window.showQuickPick(options, {
-        placeHolder: '选择需要删除的文档!',
+        placeHolder: 'Select the document to delete.',
       });
       if (deleteDoc) {
         const deleteIndex = markdowns.findIndex((m) => m.id === deleteDoc.id);
@@ -122,7 +122,7 @@ function activate(context) {
     vscode.commands.registerCommand('markdown-in-sider:save', async () => {
       const markdown = markdowns[currentMarkdownIndex];
       const url = await vscode.window.showSaveDialog({
-        saveLabel: '保存', // 对话框按钮文本
+        saveLabel: 'save', // 对话框按钮文本
         defaultUri: vscode.Uri.file(markdown.file || `${markdown.name}.md`),
       });
       if (!url) return;

@@ -3,12 +3,17 @@
   "displayName": "markdown in sider",
   "description": "",
   "version": "0.0.1",
+  "icon": "icon.png",
   "engines": {
     "vscode": "^1.98.0"
   },
   "categories": [
     "Other"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cosy247/VsCodeExtension-MarkdownInSider.git"
+  },
   "activationEvents": [
     "onStartupFinished"
   ],
@@ -18,7 +23,7 @@
       "activitybar": [
         {
           "id": "markdown-in-sider",
-          "title": "侧边栏文档",
+          "title": "markdown in sider",
           "icon": "icon.svg"
         }
       ]
@@ -28,7 +33,7 @@
         {
           "id": "markdown-in-sider:sider",
           "type": "webview",
-          "name": "侧边栏文档",
+          "name": "markdown in sider",
           "when": "true"
         }
       ]
@@ -36,32 +41,32 @@
     "commands": [
       {
         "command": "markdown-in-sider:add",
-        "title": "新建",
+        "title": "add",
         "icon": "$(add)"
       },
       {
         "command": "markdown-in-sider:reference",
-        "title": "从文件导入",
+        "title": "import",
         "icon": "$(new-file)"
       },
       {
         "command": "markdown-in-sider:select",
-        "title": "切换文档",
+        "title": "select",
         "icon": "$(selection)"
       },
       {
         "command": "markdown-in-sider:delete",
-        "title": "删除文档",
+        "title": "delete",
         "icon": "$(trash)"
       },
       {
         "command": "markdown-in-sider:save",
-        "title": "另存为",
+        "title": "save",
         "icon": "$(symbol-reference)"
       },
       {
         "command": "markdown-in-sider:preview",
-        "title": "预览",
+        "title": "preview",
         "icon": "$(open-preview)"
       }
     ],
@@ -107,7 +112,7 @@
           "default": [
             {}
           ],
-          "description": "markdown-in-sider内容列表"
+          "description": "markdown-in-sider content list."
         }
       }
     }

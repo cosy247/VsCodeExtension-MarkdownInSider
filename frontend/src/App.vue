@@ -6,6 +6,7 @@
     theme="dark"
     :toolbars="false"
     :preview="true"
+    language="en-US"
     @onBlur="handleBlur" />
 </template>
 
