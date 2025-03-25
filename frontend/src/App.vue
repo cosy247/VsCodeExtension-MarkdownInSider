@@ -17,29 +17,10 @@ import 'md-editor-v3/lib/style.css';
 // const vscode = acquireVsCodeApi();
 
 // 文档内容列表
-const markdown = ref(`
-# 87
-
-\`\`\`js
-// 文档内容列表
-const markdown = ref('# 87');
+const markdown = ref(``);
 
 // 切换编辑和预览
 const isPreview = ref(false);
-
-// 编辑器失去焦点
-function handleBlur() {
-  vscode.postMessage({ command: 'save', data: markdown.value });
-}
-\`\`\`
-
-| 1 | 2 | 3| 1 | 2 | 3| 1 | 2 | 3123| 
-| --- | -- | -- |--- | -- | -- |--- | -- | -- |
-| 23 | 3 | 21
-`);
-
-// 切换编辑和预览
-const isPreview = ref(true);
 
 // 编辑器失去焦点
 function handleBlur() {
