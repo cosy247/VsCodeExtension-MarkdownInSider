@@ -2,11 +2,16 @@
   "name": "markdown-in-sider",
   "displayName": "markdown in sider",
   "description": "",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "icon": "icon.png",
   "engines": {
     "vscode": "^1.98.0"
   },
+  "keywords": [
+    "markdown",
+    "MarkdownInSider",
+    "sider"
+  ],
   "publisher": "cosy247",
   "categories": [
     "Other"
@@ -24,7 +29,7 @@
       "activitybar": [
         {
           "id": "markdown-in-sider",
-          "title": "markdown in sider",
+          "title": "sider md",
           "icon": "icon.svg"
         }
       ]
@@ -122,7 +127,8 @@
     "lint": "eslint .",
     "pretest": "npm run lint",
     "test": "vscode-test",
-    "build": "vsce package"
+    "build": "cd frontend && npm run build && cd ../ && vsce package",
+    "publish": "vsce publish"
   },
   "devDependencies": {
     "@types/vscode": "^1.98.0",
