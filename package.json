@@ -2,7 +2,7 @@
   "name": "markdown-in-sider",
   "displayName": "markdown in sider",
   "description": "",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "icon": "icon.png",
   "engines": {
     "vscode": "^1.98.0"

@@ -2,6 +2,10 @@
 
 All notable changes to the "markdown-in-sider" extension will be documented in this file.
 
+## 0.0.3
+
+- Add readme file
+
 ## 0.0.2
 
 - Preview style changes
